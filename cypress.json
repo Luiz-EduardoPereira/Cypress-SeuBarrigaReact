@@ -1,1 +1,4 @@
-{}
+{
+    "baseUrl":"https://barrigareact.wcaquino.me/",
+    "failOnStatusCode": "false"
+}
