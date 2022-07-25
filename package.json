@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "cypress": "^9.7.0"
+    "cypress": "^9.7.0",
+    "faker-br": "^0.4.1"
   }
 }
