@@ -1,12 +1,6 @@
 /// <reference types = "cypress" />
 
-const faker = require("faker-br")
-
-let usuario = {
-    nome: faker.name.firstName()+" "+faker.name.lastName(),
-    email: faker.internet.email(),
-    senha: faker.internet.password()
-}
+import { usuario, cadastro }  from "./../../cypress.env"
 
 describe('Tela de Cadastro', () => {
 
@@ -19,7 +13,7 @@ describe('Tela de Cadastro', () => {
         cy.get(".jumbotron .form-group > .form-control:input[placeholder='Senha']").type(usuario.senha)
         cy.get(".jumbotron .btn").click()
         cy.get('.toast-success').should('be.visible')
-        cy.get('.toast .toast-message').should('have.text','Usuário adicionado com sucesso')
+        cy.get('.toast .toast-message').should('have.text', cadastro.msgUsuarioCadastradoComSucesso)
         cy.url().should('include', '/login')
     })
 })
