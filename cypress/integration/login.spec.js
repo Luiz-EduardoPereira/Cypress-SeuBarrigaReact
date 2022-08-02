@@ -2,7 +2,7 @@
 
 describe('Tela de Login', () => {
 
-    it('Logando com usuário válido', () => {
+    it('Realizando login com sucesso', () => {
         cy.visit('/')
         cy.url().should('include','/login')
         cy.get('.jumbotron .form-group .input-group > .form-control').type(Cypress.env('login').email)
