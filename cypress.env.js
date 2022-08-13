@@ -14,5 +14,13 @@ export default {
     },
         cadastro: {
             msgUsuarioCadastradoComSucesso: "Usuário adicionado com sucesso"
+    },
+        conta: {
+            nomeConta: "teste",
+            msgContaInseridaComSucesso: "Conta inserida com sucesso!"
+    },
+        msgsDeErro: {
+            erro400: "Erro: Error: Request failed with status code 400"
     }
+
 }

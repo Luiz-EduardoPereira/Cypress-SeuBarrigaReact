@@ -1,6 +1,6 @@
 /// <reference types = "cypress" />
 
-import { usuario, cadastro }  from "../../cypress.env"
+import variaveis from "../../cypress.env"
 
 describe('Realizando Testes Funcionais', () => {
 
@@ -8,12 +8,12 @@ describe('Realizando Testes Funcionais', () => {
         cy.visit('/')
         cy.get("#root > div #navbarSupportedContent > ul > li > a:contains('Registrar')").click()
         cy.url().should('include', '/registro')
-        cy.get(".jumbotron .form-group > .form-control:input[placeholder='Nome']").type(usuario.nome)
-        cy.get(".jumbotron .form-group .input-group > input").type(usuario.email)
-        cy.get(".jumbotron .form-group > .form-control:input[placeholder='Senha']").type(usuario.senha)
+        cy.get(".jumbotron .form-group > .form-control:input[placeholder='Nome']").type(variaveis.usuario.nome)
+        cy.get(".jumbotron .form-group .input-group > input").type(variaveis.usuario.email)
+        cy.get(".jumbotron .form-group > .form-control:input[placeholder='Senha']").type(variaveis.usuario.senha)
         cy.get(".jumbotron .btn").click()
         cy.get('.toast-success').should('be.visible')
-        cy.get('.toast .toast-message').should('have.text', cadastro.msgUsuarioCadastradoComSucesso)
+        cy.get('.toast .toast-message').should('have.text', variaveis.cadastro.msgUsuarioCadastradoComSucesso)
         cy.url().should('include', '/login')
     })
 
@@ -40,10 +40,11 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.navbar-dark > .dropdown-toggle').click()
         cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
         cy.url().should('include','/contas')
-        cy.get('.form-group > input').type('teste')
+        cy.get('.form-group > input').type(variaveis.conta.nomeConta)
         cy.get('.form-group > button').click()
-        cy.get('.toast .toast-message').should('have.text', 'Conta inserida com sucesso!')
-        cy.get(".table > tbody > tr > td:contains('teste')").invoke('text').should('eq', 'teste')
+        cy.get('.toast .toast-message').should('have.text', variaveis.conta.msgContaInseridaComSucesso)
+        //cy.get(".table > tbody > tr > td:contains('teste')").invoke('text').should('eq', variaveis.conta.nomeConta)
+        cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')").invoke('text').should('eq', variaveis.conta.nomeConta)
     })
 
     it.only('Deve barrar a criação de uma conta já existente', () => {
@@ -59,8 +60,8 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.navbar-dark > .dropdown-toggle').click()
         cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
         cy.url().should('include','/contas')
-        cy.get('.form-group > input').type('teste')
+        cy.get('.form-group > input').type(variaveis.conta.nomeConta)
         cy.get('.form-group > button').click()
-        cy.get('.toast .toast-message').should('have.text', 'Erro: Error: Request failed with status code 400')
+        cy.get('.toast .toast-message').should('have.text', variaveis.msgsDeErro.erro400)
     })
 })
