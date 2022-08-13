@@ -47,7 +47,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')").invoke('text').should('eq', variaveis.conta.nomeConta)
     })
 
-    it.only('Deve barrar a criação de uma conta já existente', () => {
+    it('Deve barrar a criação de uma conta já existente', () => {
         cy.visit('/')
         cy.url().should('include','/login')
         cy.get('.jumbotron .form-group .input-group > .form-control').type(Cypress.env('login').email)
