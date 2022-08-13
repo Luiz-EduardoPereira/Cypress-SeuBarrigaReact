@@ -17,7 +17,9 @@ export default {
     },
         conta: {
             nomeConta: "teste",
-            msgContaInseridaComSucesso: "Conta inserida com sucesso!"
+            nomeContaAlterada: "TESTE",
+            msgContaInseridaComSucesso: "Conta inserida com sucesso!",
+            msgContaAtualizadaComSucesso: "Conta atualizada com sucesso!"
     },
         msgsDeErro: {
             erro400: "Erro: Error: Request failed with status code 400"
