@@ -36,7 +36,6 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.toast .toast-message').should('have.text', variaveis.conta.msgContaInseridaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
         cy.get('.container .toast .toast-close-button').should('not.exist')
-        //cy.get(".table > tbody > tr > td:contains('teste')").invoke('text').should('eq', variaveis.conta.nomeConta)
         cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')").invoke('text').should('eq', variaveis.conta.nomeConta)
     })
 
@@ -50,6 +49,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.container .toast .toast-close-button').click()
         cy.get('.container .toast .toast-close-button').should('not.exist')
     })
+
     it('Deve alterar uma conta existente', () => {
         cy.get('.navbar-dark > .dropdown-toggle').click()
         cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
@@ -65,5 +65,18 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.container .toast .toast-close-button').click()
         cy.get('.container .toast .toast-close-button').should('not.exist')
         cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeContaAlterada+"')").invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
+    })
+
+    it.only('Deve criar uma movimentação de Receita', () => {
+        cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
+        cy.url().should('include', '/movimentacao')
+        cy.get('.form-group .btn-success').click()
+        cy.get(".form-group [placeholder='Descrição...']").type('Salário')
+        cy.get(".form-group [placeholder='Valor']").type('5000.00')
+        cy.get(".form-group [placeholder='Interessado...']").type(variaveis.usuario.nome)
+        cy.get('.btn-outline-danger').click()
+        cy.get('.btn-primary').click()
+        cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
+        //cy.get('.container .toast .toast-close-button').click()
     })
 })
