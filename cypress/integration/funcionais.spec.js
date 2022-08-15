@@ -67,7 +67,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeContaAlterada+"')").invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
     })
 
-    it.only('Deve criar uma movimentação de Receita', () => {
+    it('Deve criar uma movimentação de Receita recebida', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-success').click()
@@ -78,5 +78,17 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
         //cy.get('.container .toast .toast-close-button').click()
+    })
+
+    it.only('Deve criar uma movimentação de Despesa que já foi paga', () => {
+        cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
+        cy.url().should('include', '/movimentacao')
+        cy.get('.form-group .btn-secondary').click()
+        cy.get(".form-group [placeholder='Descrição...']").type('Celular')
+        cy.get(".form-group [placeholder='Valor']").type('250.00')
+        cy.get(".form-group [placeholder='Interessado...']").type(variaveis.usuario.nome)
+        cy.get('.btn-outline-danger').click()
+        cy.get('.btn-primary').click()
+        cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
     })
 })
