@@ -73,14 +73,14 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.form-group .btn-success').click()
         cy.get(".form-group [placeholder='Descrição...']").type('Salário')
         cy.get(".form-group [placeholder='Valor']").type('5000.00')
-        cy.get(".form-group [placeholder='Interessado...']").type(variaveis.usuario.nome)
+        cy.get(".form-group [placeholder='Interessado...']").type('Eu')
         cy.get('.btn-outline-danger').click()
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
         //cy.get('.container .toast .toast-close-button').click()
     })
 
-    it.only('Deve criar uma movimentação de Despesa que já foi paga', () => {
+    it('Deve criar uma movimentação de Despesa que já foi paga', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-secondary').click()
@@ -88,6 +88,17 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(".form-group [placeholder='Valor']").type('250.00')
         cy.get(".form-group [placeholder='Interessado...']").type(variaveis.usuario.nome)
         cy.get('.btn-outline-danger').click()
+        cy.get('.btn-primary').click()
+        cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
+    })
+
+    it.only('Deve criar uma movimentação de Receita a receber', () => {
+        cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
+        cy.url().should('include', '/movimentacao')
+        cy.get('.form-group .btn-success').click()
+        cy.get(".form-group [placeholder='Descrição...']").type("Pix "+variaveis.usuario.nome)
+        cy.get(".form-group [placeholder='Valor']").type('350.00')
+        cy.get(".form-group [placeholder='Interessado...']").type('Eu')
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', 'Movimentação inserida com sucesso!')
     })
