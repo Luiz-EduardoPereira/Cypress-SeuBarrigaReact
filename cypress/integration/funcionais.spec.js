@@ -2,18 +2,19 @@
 
 import variaveis from "../../cypress.env"
 import util from "../support/util"
+import locator from "../support/locators"
 
 describe('Realizando Testes Funcionais', () => {
     before(() => {
         cy.visit('/')
         cy.url().should('include','/login')
-        cy.get('.jumbotron .form-group .input-group > .form-control').type(Cypress.env('login').email)
-        cy.get(".jumbotron .form-group > .form-control:input[placeholder='Senha']").type(Cypress.env('login').senha, {log: false})
-        cy.get('.btn').click()
-        cy.get('.container .toast-top-right').should('be.visible')
-        cy.get('.container .toast .toast-message').should("have.text", "Bem vindo, "+Cypress.env('login').nome+"!")
-        cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Login.inputEmail).type(Cypress.env('login').email)
+        cy.get(locator.Login.inputSenha).type(Cypress.env('login').senha, {log: false})
+        cy.get(locator.Login.btnEntrar).click()
+        cy.get(locator.Mensagem.identificarToast).should('be.visible')
+        cy.get(locator.Mensagem.pegarMensagemToast).should("have.text", "Bem vindo, "+Cypress.env('login').nome+"!")
+        cy.get(locator.Mensagem.fecharToast).click()
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
 
     it.skip('Deve realizar o cadastro de um usuário válido', () => {
@@ -29,46 +30,46 @@ describe('Realizando Testes Funcionais', () => {
     })
 
     it('Deve criar uma conta', () => {
-        cy.get('.navbar-dark > .dropdown-toggle').click()
-        cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
+        cy.get(locator.Conta.menuConfiguracoes).click()
+        cy.get(locator.Conta.subMenuContas).should('be.visible').click()
         cy.url().should('include','/contas')
-        cy.get('.form-group > input').type(variaveis.conta.nomeConta)
-        cy.get('.form-group > button').click()
-        cy.get('.toast .toast-message').should('have.text', variaveis.conta.msgContaInseridaComSucesso)
-        cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
-        cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')").invoke('text').should('eq', variaveis.conta.nomeConta)
+        cy.get(locator.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
+        cy.get(locator.Conta.btnSalvarConta).click()
+        cy.get(locator.Mensagem.pegarMensagemToast).should('have.text', variaveis.conta.msgContaInseridaComSucesso)
+        cy.get(locator.Mensagem.fecharToast).click()
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
+        cy.get(locator.Conta.pegarContaCadastradaNaTabela).invoke('text').should('eq', variaveis.conta.nomeConta)
     })
 
     it('Deve barrar a criação de uma conta já existente', () => {
-        cy.get('.navbar-dark > .dropdown-toggle').click()
-        cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
+        cy.get(locator.Conta.menuConfiguracoes).click()
+        cy.get(locator.Conta.subMenuContas).should('be.visible').click()
         cy.url().should('include','/contas')
-        cy.get('.form-group > input').type(variaveis.conta.nomeConta)
-        cy.get('.form-group > button').click()
-        cy.get('.toast .toast-message').should('have.text', variaveis.msgsDeErro.erro400)
-        cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
+        cy.get(locator.Conta.btnSalvarConta).click()
+        cy.get(locator.Mensagem.pegarMensagemToast).should('have.text', variaveis.msgsDeErro.erro400)
+        cy.get(locator.Mensagem.fecharToast).click()
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
 
     it('Deve alterar uma conta existente', () => {
-        cy.get('.navbar-dark > .dropdown-toggle').click()
-        cy.get(".navbar-dark [href='/contas']").should('be.visible').click()
+        cy.get(locator.Conta.menuConfiguracoes).click()
+        cy.get(locator.Conta.subMenuContas).should('be.visible').click()
         cy.url().should('include','/contas')
-        cy.get('.table > tbody > tr > td > a .fa-edit').should('be.visible').click()
-        cy.get('.form-group > input')
+        cy.get(locator.Conta.btnEditarConta).should('be.visible').click()
+        cy.get(locator.Conta.inputNomeConta)
          .should('have.value', variaveis.conta.nomeConta)
          .clear()
          .type(variaveis.conta.nomeContaAlterada)
          .should('have.value', variaveis.conta.nomeContaAlterada)
-        cy.get('.form-group > button').click()
-        cy.get('.toast .toast-message').should('have.text', variaveis.conta.msgContaAtualizadaComSucesso)
-        cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
-        cy.get(".table > tbody > tr > td:contains('"+variaveis.conta.nomeContaAlterada+"')").invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
+        cy.get(locator.Conta.btnSalvarConta).click()
+        cy.get(locator.Mensagem.pegarMensagemToast).should('have.text', variaveis.conta.msgContaAtualizadaComSucesso)
+        cy.get(locator.Mensagem.fecharToast).click()
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
+        cy.get(locator.Conta.pegarContaAlteradaNaTabela).invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
     })
 
-    it('Deve criar uma movimentação de Receita recebida', () => {
+    it.skip('Deve criar uma movimentação de Receita recebida', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-success').click()
@@ -79,10 +80,10 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', variaveis.movimentacao.msgMovimentacaoInseridaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Despesa que já foi paga', () => {
+    it.skip('Deve criar uma movimentação de Despesa que já foi paga', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-secondary').click()
@@ -93,10 +94,10 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', variaveis.movimentacao.msgMovimentacaoInseridaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Receita a receber', () => {
+    it.skip('Deve criar uma movimentação de Receita a receber', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-success').click()
@@ -106,10 +107,10 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', variaveis.movimentacao.msgMovimentacaoInseridaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Despesa a receber', () => {
+    it.skip('Deve criar uma movimentação de Despesa a receber', () => {
         cy.get('.navbar-collapse .navbar-nav .nav-item a[href="/movimentacao"]').click()
         cy.url().should('include', '/movimentacao')
         cy.get('.form-group .btn-secondary').click()
@@ -119,23 +120,23 @@ describe('Realizando Testes Funcionais', () => {
         cy.get('.btn-primary').click()
         cy.get('.toast .toast-message').should('have.text', variaveis.movimentacao.msgMovimentacaoInseridaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
-    it('Deve validar o saldo corretamente', () => {
+    it.skip('Deve validar o saldo corretamente', () => {
         cy.get('.navbar-nav .nav-item a[href="/"]').click()
         cy.url().should('eq', 'https://barrigareact.wcaquino.me/')
         cy.get(".table tbody > tr > td:contains("+variaveis.conta.nomeContaAlterada+")").invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
         cy.get(".table tbody > tr > td:contains("+variaveis.conta.nomeContaAlterada+")").next().invoke('text').should('eq', util.formataValorDoSaldo(variaveis.movimentacao.valorReceitaSalario, variaveis.movimentacao.valorDespesaCelular))
     })
-    it('Deve remover a movimentação criada', () => {
+    it.skip('Deve remover a movimentação criada', () => {
         cy.get('.navbar-nav .nav-item a[href="/extrato"]').click()
         cy.url().should('include', '/extrato')
         cy.get('.receitaPaga .col a .fa-trash-alt').click()
         cy.get('.toast .toast-message').should('have.text', variaveis.movimentacao.msgMovimentacaoRemovidaComSucesso)
         cy.get('.container .toast .toast-close-button').click()
-        cy.get('.container .toast .toast-close-button').should('not.exist')
+        cy.get(locator.Mensagem.identificarToast).should('not.be.visible')
     })
-    it('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
+    it.skip('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
         cy.get('.navbar-nav .nav-item a[href="/"]').click()
         cy.url().should('eq', 'https://barrigareact.wcaquino.me/')
         cy.get(".table tbody > tr > td:contains("+variaveis.conta.nomeContaAlterada+")").invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
