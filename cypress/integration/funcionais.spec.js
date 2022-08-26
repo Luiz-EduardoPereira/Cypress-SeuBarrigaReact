@@ -1,20 +1,12 @@
 /// <reference types = "cypress" />
+import Login from "../support/pages/Login"
+import Conta from "../support/pages/Conta"
 
-import variaveis from "../../cypress.env"
-import util from "../support/util"
-import locators from "../support/locators"
+
 
 describe('Realizando Testes Funcionais', () => {
-    before(() => {
-        cy.visit('/')
-        cy.url().should('include','/login')
-        cy.get(locators.Login.inputEmail).type(Cypress.env('login').email)
-        cy.get(locators.Login.inputSenha).type(Cypress.env('login').senha, {log: false})
-        cy.get(locators.Login.btnEntrar).click()
-        cy.get(locators.Mensagem.identificarToast).should('be.visible')
-        cy.get(locators.Mensagem.pegarMensagemToast).should("have.text", "Bem vindo, "+Cypress.env('login').nome+"!")
-        cy.get(locators.Mensagem.fecharToast).click()
-        cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
+    beforeEach(() => {
+        Login.realizarLogin()
     })
 
     it.skip('Deve realizar o cadastro de um usuário válido', () => {
@@ -29,47 +21,19 @@ describe('Realizando Testes Funcionais', () => {
         cy.url().should('include', '/login')
     })
 
-    it('Deve criar uma conta', () => {
-        cy.get(locators.Conta.menuConfiguracoes).click()
-        cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
-        cy.get(locators.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
-        cy.get(locators.Conta.btnSalvarConta).click()
-        cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.conta.msgContaInseridaComSucesso)
-        cy.get(locators.Mensagem.fecharToast).click()
-        cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
-        cy.get(locators.Conta.pegarContaCadastradaNaTabela).invoke('text').should('eq', variaveis.conta.nomeConta)
+    it.skip('Deve criar uma conta', () => {
+        Conta.criarConta()
     })
 
-    it('Deve barrar a criação de uma conta já existente', () => {
-        cy.get(locators.Conta.menuConfiguracoes).click()
-        cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
-        cy.get(locators.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
-        cy.get(locators.Conta.btnSalvarConta).click()
-        cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.msgsDeErro.erro400)
-        cy.get(locators.Mensagem.fecharToast).click()
-        cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
+    it.skip('Deve barrar a criação de uma conta já existente', () => {
+        Conta.naoPermitirCriarContaJaExistente()
     })
 
     it('Deve alterar uma conta existente', () => {
-        cy.get(locators.Conta.menuConfiguracoes).click()
-        cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
-        cy.get(locators.Conta.btnEditarConta).should('be.visible').click()
-        cy.get(locators.Conta.inputNomeConta)
-         .should('have.value', variaveis.conta.nomeConta)
-         .clear()
-         .type(variaveis.conta.nomeContaAlterada)
-         .should('have.value', variaveis.conta.nomeContaAlterada)
-        cy.get(locators.Conta.btnSalvarConta).click()
-        cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.conta.msgContaAtualizadaComSucesso)
-        cy.get(locators.Mensagem.fecharToast).click()
-        cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
-        cy.get(locators.Conta.pegarContaAlteradaNaTabela).invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
+        Conta.alterarConta()
     })
 
-    it('Deve criar uma movimentação de Receita recebida', () => {
+    it.skip('Deve criar uma movimentação de Receita recebida', () => {
         cy.get(locators.Movimentacao.menuMovimentacao).click()
         cy.url().should('include', '/movimentacao')
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
@@ -83,7 +47,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Despesa que já foi paga', () => {
+    it.skip('Deve criar uma movimentação de Despesa que já foi paga', () => {
         cy.get(locators.Movimentacao.menuMovimentacao).click()
         cy.url().should('include', '/movimentacao')
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
@@ -97,7 +61,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Receita a receber', () => {
+    it.skip('Deve criar uma movimentação de Receita a receber', () => {
         cy.get(locators.Movimentacao.menuMovimentacao).click()
         cy.url().should('include', '/movimentacao')
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
@@ -110,7 +74,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     })
 
-    it('Deve criar uma movimentação de Despesa a receber', () => {
+    it.skip('Deve criar uma movimentação de Despesa a receber', () => {
         cy.get(locators.Movimentacao.menuMovimentacao).click()
         cy.url().should('include', '/movimentacao')
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
@@ -122,13 +86,13 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(locators.Mensagem.fecharToast).click()
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     })
-    it('Deve validar o saldo corretamente', () => {
+    it.skip('Deve validar o saldo corretamente', () => {
         cy.get(locators.Dashboard.menuHome).click()
         cy.url().should('eq', variaveis.geral.urlDaAplicacao)
         cy.get(locators.Dashboard.pegarContaNaTabela).invoke('text').should('eq', variaveis.conta.nomeContaAlterada)
         cy.get(locators.Dashboard.pegarContaNaTabela).next().invoke('text').should('eq', util.formataValorDoSaldo(variaveis.movimentacao.valorReceitaSalario, variaveis.movimentacao.valorDespesaCelular))
     })
-    it('Deve remover a movimentação criada', () => {
+    it.skip('Deve remover a movimentação criada', () => {
         cy.get(locators.Extrato.menuExtrato).click()
         cy.url().should('include', '/extrato')
         cy.get(locators.Extrato.btnExcluirReceitaPaga).click()
@@ -136,7 +100,7 @@ describe('Realizando Testes Funcionais', () => {
         cy.get(locators.Mensagem.fecharToast).click()
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     })
-    it('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
+    it.skip('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
         cy.get(locators.Dashboard.menuHome).click()
         cy.url().should('eq', variaveis.geral.urlDaAplicacao)
         cy.get(locators.Dashboard.pegarContaNaTabela).invoke('text').should('eq', variaveis.conta.nomeContaAlterada)

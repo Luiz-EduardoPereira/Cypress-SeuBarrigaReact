@@ -1,6 +1,6 @@
 import variaveis from "../../cypress.env"
 
-const locators = {
+export const locators = {
     Login: {
         inputEmail: ".jumbotron .form-group .input-group > .form-control",
         inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",
@@ -41,4 +41,3 @@ const locators = {
         fecharToast: ".container .toast .toast-close-button"
     }
 }
-export default locators
