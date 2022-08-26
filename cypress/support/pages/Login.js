@@ -13,4 +13,4 @@ class Login {
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     }
 }
-export default new Login()
+export default new Login();
