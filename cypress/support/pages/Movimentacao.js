@@ -1,7 +1,8 @@
 const locators = require("../../support/locators").locators
-import variaveis from "../../../cypress.env"
+import variaveis from "../variaveis"
 
 class Movimentacao {
+
     criarReceitaJaRecebida(){
         cy.get(locators.Movimentacao.menuMovimentacao).click()
         cy.url().should('include', '/movimentacao')

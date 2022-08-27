@@ -1,6 +1,8 @@
 const locators = require("../../support/locators").locators
+import variaveis from "../variaveis"
 
 class Login {
+
     realizarLogin(){
         cy.visit('/')
         cy.url().should('include','/login')

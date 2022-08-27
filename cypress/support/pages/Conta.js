@@ -1,8 +1,9 @@
 const locators = require("../../support/locators").locators
-import variaveis from "../../../cypress.env"
+import variaveis from "../variaveis"
 //import util from "../support/util"
 
 class Conta {
+
     criarConta(){
         cy.get(locators.Conta.menuConfiguracoes).click()
         cy.get(locators.Conta.subMenuContas).should('be.visible').click()

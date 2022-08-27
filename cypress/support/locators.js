@@ -1,6 +1,9 @@
-import variaveis from "../../cypress.env"
+import variaveis from "../support/variaveis"
 
 export const locators = {
+    Cadastro: {
+
+    },
     Login: {
         inputEmail: ".jumbotron .form-group .input-group > .form-control",
         inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",

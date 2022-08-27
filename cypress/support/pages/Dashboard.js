@@ -1,5 +1,5 @@
 const locators = require('../locators').locators
-import variaveis from '../../../cypress.env'
+import variaveis from '../variaveis'
 import util from  '../util'
 
 class Dashbord {
