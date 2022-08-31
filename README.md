@@ -2,3 +2,4 @@
 Projeto criado para automatizar os testes funcionais da aplicação "Seu Barriga"(https://barrigareact.wcaquino.me/login), que é uma aplicação que utiliza a tecnologia React. Serão utilizadas as tecnologias: JS + Node.js + Cypress, para a automatização dos testes funcionais.
 
 Os cenários abordados serão: Inserir Conta, Alterar Conta, Inserir Conta repetida, Inserir Movimentação, Calculo de Saldo e Remover Movimentação.
+Foi adicionado dois cenários como plus, que foram: a criação de usuário de forma aleatório utilizando a biblioteca "faker-br" e também a criação de um teste que valida se pode inserir o mesmo usuário com os mesmos dados por uma segunda vez.
