@@ -36,7 +36,8 @@ export default {
 
     },
         msgsDeErro: {
-            erro400: "Erro: Error: Request failed with status code 400"
+            erro400: "Erro: Error: Request failed with status code 400",
+            erro500: "Erro: Error: Request failed with status code 500"
     },
         geral: {
             urlDaAplicacao: "https://barrigareact.wcaquino.me/"

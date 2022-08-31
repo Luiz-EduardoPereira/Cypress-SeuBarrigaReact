@@ -2,10 +2,14 @@ import variaveis from "../support/variaveis"
 
 export const locators = {
     Cadastro: {
-
+        menuRegistrar: "#root > div #navbarSupportedContent > ul > li > a:contains('Registrar')",
+        inputNome: ".jumbotron .form-group > .form-control:input[placeholder='Nome']",
+        inputEmail: ".input-group > .form-control:input[Placeholder='Email']",
+        inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",
+        btnRegistrar: ".jumbotron .btn"
     },
     Login: {
-        inputEmail: ".jumbotron .form-group .input-group > .form-control",
+        inputEmail: ".jumbotron .form-group input[placeholder='seu@email.com']",
         inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",
         btnEntrar: ".btn"
     },
