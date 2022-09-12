@@ -1,6 +1,5 @@
 const locators = require("../../support/locators").locators
 import variaveis from "../variaveis"
-//import util from "../support/util"
 
 class Conta {
 

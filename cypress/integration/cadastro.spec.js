@@ -9,4 +9,8 @@ describe('Tela de Cadastro', () => {
     it('Deve realizar o cadastro de um usuário válido', () => {
         Cadastro.cadastrarUsuario()
     })
+
+    it('Não deverá permitir o cadastro sem informar algum dos campos', () => {
+        Cadastro.naoDeixarCadastrarMesmoUsuarioNovamente()
+    })
 })
