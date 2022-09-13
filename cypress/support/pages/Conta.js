@@ -6,7 +6,7 @@ class Conta {
     criarConta(){
         cy.get(locators.Conta.menuConfiguracoes).click()
         cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
+        cy.url().should('include', variaveis.geral.endpointContas)
         cy.get(locators.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
         cy.get(locators.Conta.btnSalvarConta).click()
         cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.conta.msgContaInseridaComSucesso)
@@ -17,7 +17,7 @@ class Conta {
     naoPermitirCriarContaJaExistente(){
         cy.get(locators.Conta.menuConfiguracoes).click()
         cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
+        cy.url().should('include', variaveis.geral.endpointContas)
         cy.get(locators.Conta.inputNomeConta).type(variaveis.conta.nomeConta)
         cy.get(locators.Conta.btnSalvarConta).click()
         cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.msgsDeErro.erro400)
@@ -27,7 +27,7 @@ class Conta {
     alterarConta(){
         cy.get(locators.Conta.menuConfiguracoes).click()
         cy.get(locators.Conta.subMenuContas).should('be.visible').click()
-        cy.url().should('include','/contas')
+        cy.url().should('include', variaveis.geral.endpointContas)
         cy.get(locators.Conta.btnEditarConta).should('be.visible').click()
         cy.get(locators.Conta.inputNomeConta)
          .should('have.value', variaveis.conta.nomeConta)

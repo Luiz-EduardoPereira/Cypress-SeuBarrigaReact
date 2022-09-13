@@ -5,7 +5,7 @@ class Movimentacao {
 
     criarReceitaJaRecebida(){
         cy.get(locators.Movimentacao.menuMovimentacao).click()
-        cy.url().should('include', '/movimentacao')
+        cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoReceitaSalario)
         cy.get(locators.Movimentacao.inputValor).type(variaveis.movimentacao.valorReceitaSalario)
@@ -19,7 +19,7 @@ class Movimentacao {
 
     criarDespesaJaPaga(){
         cy.get(locators.Movimentacao.menuMovimentacao).click()
-        cy.url().should('include', '/movimentacao')
+        cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoDespesaCelular)
         cy.get(locators.Movimentacao.inputValor).type(variaveis.movimentacao.valorDespesaCelular)
@@ -33,7 +33,7 @@ class Movimentacao {
 
     criarReceitaPendente(){
         cy.get(locators.Movimentacao.menuMovimentacao).click()
-        cy.url().should('include', '/movimentacao')
+        cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoReceitaPix+" "+variaveis.usuario.nome)
         cy.get(locators.Movimentacao.inputValor).type(variaveis.movimentacao.valorReceitaPix)
@@ -46,7 +46,7 @@ class Movimentacao {
 
     criarDespesaPendenteDePagamento(){
         cy.get(locators.Movimentacao.menuMovimentacao).click()
-        cy.url().should('include', '/movimentacao')
+        cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoDespesaRoupas)
         cy.get(locators.Movimentacao.inputValor).type(variaveis.movimentacao.valorDespesaRoupas)
@@ -59,7 +59,7 @@ class Movimentacao {
 
     removerMovimentacaoDeReceitaPaga(){
         cy.get(locators.Extrato.menuExtrato).click()
-        cy.url().should('include', '/extrato')
+        cy.url().should('include', variaveis.geral.endpointExtrato)
         cy.get(locators.Extrato.btnExcluirReceitaPaga).click()
         cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.movimentacao.msgMovimentacaoRemovidaComSucesso)
         cy.get(locators.Mensagem.fecharToast).click()
