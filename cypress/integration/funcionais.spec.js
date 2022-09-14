@@ -6,8 +6,10 @@ import Dashboard from "../support/pages/Dashboard"
 
 
 describe('Realizando Testes Funcionais', () => {
-    beforeEach(() => {
+    before(() => {
         Login.realizarLogin()
+        Login.prepararAmbiente()
+
     })
 
     it('Deve criar uma conta', () => {

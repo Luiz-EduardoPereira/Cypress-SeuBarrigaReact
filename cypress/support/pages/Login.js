@@ -14,5 +14,8 @@ class Login {
         cy.get(locators.Mensagem.fecharToast).click()
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     }
+    prepararAmbiente(){
+        cy.ResetarAmbiente()
+    }
 }
 export default new Login();

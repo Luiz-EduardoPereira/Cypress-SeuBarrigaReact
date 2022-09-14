@@ -19,6 +19,7 @@ export const locators = {
         inputNomeConta: ".form-group > input",
         btnSalvarConta: ".form-group > button",
         btnEditarConta: ".table > tbody > tr > td > a .fa-edit",
+        btnExcluirTodasContas: ".fa-trash-alt",
         pegarContaCadastradaNaTabela: ".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')",
         pegarContaAlteradaNaTabela: ".table > tbody > tr > td:contains('"+variaveis.conta.nomeContaAlterada+"')"
 
@@ -36,6 +37,7 @@ export const locators = {
     Extrato: {
         menuExtrato: ".navbar-nav a[href='/extrato']",
         btnExcluirReceitaPaga: ".receitaPaga .col a .fa-trash-alt",
+        btnExcluirTodasMovimentacoes: '[href="#"] > .far'
 
     },
     Dashboard: {
