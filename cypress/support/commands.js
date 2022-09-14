@@ -22,4 +22,18 @@
 //
 //
 // -- This will overwrite an existing command --
+
+import { locators } from "./locators"
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('ResetarAmbiente', () => {
+    cy.get(locators.Extrato.menuExtrato).click()
+    cy.get(locators.Extrato.btnExcluirTodasMovimentacoes).click({multiple: true})
+    cy.get(locators.Conta.menuConfiguracoes).click()
+    cy.get(locators.Conta.subMenuContas).click()
+    cy.get(locators.Conta.btnExcluirTodasContas).click({multiple: true})
+    cy.get(locators.Mensagem.identificarToast).should('be.visible')
+    cy.get(locators.Mensagem.fecharToast).click({multiple: true})
+    cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
+    cy.get(locators.Mensagem.fecharToast).click({multiple: true})
+})
