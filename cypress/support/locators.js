@@ -13,9 +13,10 @@ export const locators = {
         inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",
         btnEntrar: ".btn"
     },
-    Conta: {
+    Configuracao: {
         menuConfiguracoes: ".navbar-dark > .dropdown-toggle",
         subMenuContas: ".navbar-dark [href='/contas']",
+        subMenuResetar: ".navbar-dark [href='/reset']",
         inputNomeConta: ".form-group > input",
         btnSalvarConta: ".form-group > button",
         btnEditarConta: ".table > tbody > tr > td > a .fa-edit",
