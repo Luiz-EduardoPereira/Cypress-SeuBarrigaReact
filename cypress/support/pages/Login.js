@@ -4,7 +4,7 @@ import variaveis from "../variaveis"
 class Login {
 
     realizarLogin(){
-        cy.visit('/')
+        cy.visit(variaveis.geral.urlDaAplicacao)
         cy.url().should('include', variaveis.geral.endpointLogin)
         cy.get(locators.Login.inputEmail).type(Cypress.env('login').email)
         cy.get(locators.Login.inputSenha).type(Cypress.env('login').senha, {log: false})

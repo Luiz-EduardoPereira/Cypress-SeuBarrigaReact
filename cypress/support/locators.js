@@ -1,5 +1,3 @@
-import variaveis from "../support/variaveis"
-
 export const locators = {
     Cadastro: {
         menuRegistrar: "#root > div #navbarSupportedContent > ul > li > a:contains('Registrar')",
@@ -13,20 +11,22 @@ export const locators = {
         inputSenha: ".jumbotron .form-group > .form-control:input[placeholder='Senha']",
         btnEntrar: ".btn"
     },
+    Menu: {
+        menu: Menu => `.navbar-dark [data-test='${Menu}']`
+    },
+    SubMenu: {
+        subMenu: subMenu => `.navbar-dark [href='${subMenu}']`
+    },
     Configuracao: {
-        menuConfiguracoes: ".navbar-dark > .dropdown-toggle",
-        subMenuContas: ".navbar-dark [href='/contas']",
-        subMenuResetar: ".navbar-dark [href='/reset']",
         inputNomeConta: ".form-group > input",
         btnSalvarConta: ".form-group > button",
         btnEditarConta: ".table > tbody > tr > td > a .fa-edit",
         btnExcluirTodasContas: ".fa-trash-alt",
-        pegarContaCadastradaNaTabela: ".table > tbody > tr > td:contains('"+variaveis.conta.nomeConta+"')",
-        pegarContaAlteradaNaTabela: ".table > tbody > tr > td:contains('"+variaveis.conta.nomeContaAlterada+"')"
+        pegarContaCadastradaNaTabela: nomeConta => `.table > tbody > tr > td:contains('${nomeConta}')`,
+        pegarContaAlteradaNaTabela: nomeContaAlterada => `.table > tbody > tr > td:contains('${nomeContaAlterada}')`
 
     },
     Movimentacao: {
-        menuMovimentacao: ".navbar-collapse .navbar-nav .nav-item a[href='/movimentacao']",
         inputDescricao: ".form-group [placeholder='Descrição...']",
         inputValor: ".form-group [placeholder='Valor']",
         inputInteressado: ".form-group [placeholder='Interessado...']",
@@ -36,14 +36,12 @@ export const locators = {
         btnSalvar: ".btn-primary"
     },
     Extrato: {
-        menuExtrato: ".navbar-nav a[href='/extrato']",
         btnExcluirReceitaPaga: ".receitaPaga .col a .fa-trash-alt",
         btnExcluirTodasMovimentacoes: '[href="#"] > .far'
 
     },
     Dashboard: {
-        menuHome: ".navbar-nav .nav-item a[href='/']",
-        pegarContaNaTabela: ".table tbody > tr > td:contains("+variaveis.conta.nomeContaAlterada+")"
+        pegarContaNaTabela: conta => `.table tbody > tr > td:contains('${conta}')`
     },
     Mensagem: {
         identificarToast: ".container .toast-top-right",

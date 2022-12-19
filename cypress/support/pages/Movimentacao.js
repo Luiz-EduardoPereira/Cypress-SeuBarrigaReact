@@ -4,7 +4,7 @@ import variaveis from "../variaveis"
 class Movimentacao {
 
     criarReceitaJaRecebida(){
-        cy.get(locators.Movimentacao.menuMovimentacao).click()
+        cy.get(locators.Menu.menu(variaveis.geral.dataTestMovimentacao)).click()
         cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoReceitaSalario)
@@ -18,7 +18,7 @@ class Movimentacao {
     }
 
     criarDespesaJaPaga(){
-        cy.get(locators.Movimentacao.menuMovimentacao).click()
+        cy.get(locators.Menu.menu(variaveis.geral.dataTestMovimentacao)).click()
         cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoDespesaCelular)
@@ -32,7 +32,7 @@ class Movimentacao {
     }
 
     criarReceitaPendente(){
-        cy.get(locators.Movimentacao.menuMovimentacao).click()
+        cy.get(locators.Menu.menu(variaveis.geral.dataTestMovimentacao)).click()
         cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoReceita).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoReceitaPix+" "+variaveis.usuario.nome)
@@ -45,7 +45,7 @@ class Movimentacao {
     }
 
     criarDespesaPendenteDePagamento(){
-        cy.get(locators.Movimentacao.menuMovimentacao).click()
+        cy.get(locators.Menu.menu(variaveis.geral.dataTestMovimentacao)).click()
         cy.url().should('include', variaveis.geral.endpointMovimentacao)
         cy.get(locators.Movimentacao.btnSelecionarTipoDespesa).click()
         cy.get(locators.Movimentacao.inputDescricao).type(variaveis.movimentacao.descricaoDespesaRoupas)
@@ -58,7 +58,7 @@ class Movimentacao {
     }
 
     removerMovimentacaoDeReceitaPaga(){
-        cy.get(locators.Extrato.menuExtrato).click()
+        cy.get(locators.Menu.menu(variaveis.geral.dataTestExtrato)).click()
         cy.url().should('include', variaveis.geral.endpointExtrato)
         cy.get(locators.Extrato.btnExcluirReceitaPaga).click()
         cy.get(locators.Mensagem.pegarMensagemToast).should('have.text', variaveis.movimentacao.msgMovimentacaoRemovidaComSucesso)

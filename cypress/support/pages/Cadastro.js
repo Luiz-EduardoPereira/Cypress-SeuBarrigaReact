@@ -4,7 +4,7 @@ const locators = require("../locators").locators
 class Cadastro {
 
     cadastrarUsuario(){
-        cy.get(locators.Cadastro.menuRegistrar).click()
+        cy.get(locators.SubMenu.subMenu(variaveis.geral.endpointRegistro)).click()
         cy.url().should('include', variaveis.geral.endpointRegistro)
         cy.get(locators.Cadastro.inputNome).type(variaveis.usuario.nome)
         cy.get(locators.Cadastro.inputEmail).type(variaveis.usuario.email)
@@ -18,7 +18,7 @@ class Cadastro {
     }
 
     naoDeixarCadastrarMesmoUsuarioNovamente(){
-        cy.get(locators.Cadastro.menuRegistrar).click()
+        cy.get(locators.SubMenu.subMenu(variaveis.geral.endpointRegistro)).click()
         cy.url().should('include', variaveis.geral.endpointRegistro)
         cy.get(locators.Cadastro.inputNome).type(variaveis.usuario.nome)
         cy.get(locators.Cadastro.inputEmail).type(variaveis.usuario.email)

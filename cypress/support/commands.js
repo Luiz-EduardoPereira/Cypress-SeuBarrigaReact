@@ -24,18 +24,19 @@
 // -- This will overwrite an existing command --
 
 import { locators } from "./locators"
+import variaveis from "./variaveis"
 
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('ResetarAmbiente', () => {
-    cy.get(locators.Configuracao.menuConfiguracoes).click()
-    cy.get(locators.Configuracao.subMenuResetar).should('be.visible').click()
+    cy.get(locators.Menu.menu(variaveis.geral.dataTestConfiguracao)).click()
+    cy.get(locators.SubMenu.subMenu(variaveis.geral.endpointReset)).should('be.visible').click()
     cy.get(locators.Mensagem.identificarToast).should('be.visible')
     cy.get(locators.Mensagem.fecharToast).click()
     cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
-    cy.get(locators.Extrato.menuExtrato).click()
+    cy.get(locators.Menu.menu(variaveis.geral.dataTestExtrato)).click()
     cy.get(locators.Extrato.btnExcluirTodasMovimentacoes).click({multiple: true})
-    cy.get(locators.Configuracao.menuConfiguracoes).click()
-    cy.get(locators.Configuracao.subMenuContas).click()
+    cy.get(locators.Menu.menu(variaveis.geral.dataTestConfiguracao)).click()
+    cy.get(locators.SubMenu.subMenu(variaveis.geral.endpointContas)).click()
     cy.get(locators.Configuracao.btnExcluirTodasContas).click({multiple: true})
     cy.get(locators.Mensagem.identificarToast).should('be.visible')
     cy.get(locators.Mensagem.fecharToast).click({multiple: true})

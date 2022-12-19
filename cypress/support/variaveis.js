@@ -47,6 +47,11 @@ export default {
             endpointLogin: "/login",
             endpointContas: "/contas",
             endpointMovimentacao: "/movimentacao",
-            endpointExtrato: "/extrato"
+            endpointExtrato: "/extrato",
+            endpointReset: "/reset",
+            dataTestHome: "menu-home",
+            dataTestMovimentacao: "menu-movimentacao",
+            dataTestExtrato: "menu-extrato",
+            dataTestConfiguracao: "menu-settings"
         }
 }
