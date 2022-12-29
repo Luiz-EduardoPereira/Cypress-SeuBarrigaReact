@@ -10,7 +10,8 @@ export default {
         usuario:{
             nome: faker.name.firstName()+" "+faker.name.lastName(),
             email: faker.internet.email(),
-            senha: faker.internet.password()
+            senha: faker.internet.password(),
+            emailInvalido: faker.name.firstName()+faker.name.lastName()+".com"
     },
         cadastro: {
             msgUsuarioCadastradoComSucesso: "Usuário adicionado com sucesso"
@@ -37,6 +38,7 @@ export default {
     },
         msgsDeErro: {
             erro400: "Erro: Error: Request failed with status code 400",
+            erro401: "Erro: Error: Request failed with status code 401",
             erro500: "Erro: Error: Request failed with status code 500"
     },
         geral: {

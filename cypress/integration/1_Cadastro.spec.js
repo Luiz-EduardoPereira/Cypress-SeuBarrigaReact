@@ -1,7 +1,8 @@
 /// <reference types = "cypress" />
 import Cadastro from "../support/pages/Cadastro"
 
-describe('Tela de Cadastro', () => {
+describe('Realizando testes da funcionalidade de Cadastro', () => {
+
     beforeEach(() => {
         cy.visit('/')
     })

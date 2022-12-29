@@ -1,30 +1,16 @@
 /// <reference types = "cypress" />
+
+import Util from "../support/util"
 import Login from "../support/pages/Login"
 import Conta from "../support/pages/Conta"
 import Movimentacao from "../support/pages/Movimentacao"
-import Dashboard from "../support/pages/Dashboard"
 
+describe('Realizando testes da funcionalidade de Movimentação', () => {
 
-describe('Realizando Testes Funcionais', () => {
-    before(() => {
+    before(()=> {
         Login.realizarLogin()
-        Login.prepararAmbiente()
-
-    })
-
-    it('Deve criar uma conta', () => {
+        Util.prepararAmbiente()
         Conta.criarConta()
-
-    })
-
-    it('Deve barrar a criação de uma conta já existente', () => {
-        Conta.naoPermitirCriarContaJaExistente()
-
-    })
-
-    it('Deve alterar uma conta existente', () => {
-        Conta.alterarConta()
-
     })
 
     it('Deve criar uma movimentação de Receita que já foi recebida', () => {
@@ -47,18 +33,8 @@ describe('Realizando Testes Funcionais', () => {
 
     })
 
-    it('Deve validar o saldo corretamente', () => {
-        Dashboard.validarSaldoReceitaRecebidaDespesaPaga()
-
-    })
-
     it('Deve remover a movimentação criada', () => {
         Movimentacao.removerMovimentacaoDeReceitaPaga()
-
-    })
-
-    it('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
-        Dashboard.validarRecalculoDaExclusaoDeMovimentacaoReceitaRecebida()
 
     })
 })
