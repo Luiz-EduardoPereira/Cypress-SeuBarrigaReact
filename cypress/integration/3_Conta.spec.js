@@ -6,7 +6,8 @@ import Conta from "../support/pages/Conta"
 
 describe('Realizando testes da funcionalidade de Conta', () => {
 
-    before(() => {
+    beforeEach(() => {
+        Util.acessarSistema()
         Login.realizarLogin()
         Util.prepararAmbiente()
 
@@ -18,11 +19,13 @@ describe('Realizando testes da funcionalidade de Conta', () => {
     })
 
     it('Deve barrar a criação de uma conta já existente', () => {
+        Conta.criarConta()
         Conta.naoPermitirCriarContaJaExistente()
 
     })
 
     it('Deve alterar uma conta existente', () => {
+        Conta.criarConta()
         Conta.alterarConta()
 
     })

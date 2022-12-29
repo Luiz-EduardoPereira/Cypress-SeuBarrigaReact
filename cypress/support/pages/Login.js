@@ -4,7 +4,6 @@ import variaveis from "../variaveis"
 class Login {
 
     realizarLogin(){
-        cy.visit(variaveis.geral.urlDaAplicacao)
         cy.url().should('include', variaveis.geral.endpointLogin)
         cy.get(locators.Login.inputEmail).type(Cypress.env('login').email)
         cy.get(locators.Login.inputSenha).type(Cypress.env('login').senha, {log: false})
@@ -12,11 +11,11 @@ class Login {
         cy.get(locators.Mensagem.identificarToast).should('be.visible')
         cy.get(locators.Mensagem.pegarMensagemToast).should("have.text", "Bem vindo, "+Cypress.env('login').nome+"!")
         cy.get(locators.Mensagem.fecharToast).click()
+        cy.get('small').should('have.text', 'Seu Barriga - Nunca mais esqueça de pagar o aluguel.')
         cy.get(locators.Mensagem.identificarToast).should('not.be.visible')
     }
 
     realizarLoginComSenhaInvalida(){
-        cy.visit(variaveis.geral.urlDaAplicacao)
         cy.url().should('include', variaveis.geral.endpointLogin)
         cy.get(locators.Login.inputEmail).type(Cypress.env('login').email)
         cy.get(locators.Login.inputSenha).type(variaveis.usuario.senha)
@@ -28,7 +27,6 @@ class Login {
     }
 
     realizarLoginComEmailInvalido(){
-        cy.visit(variaveis.geral.urlDaAplicacao)
         cy.url().should('include', variaveis.geral.endpointLogin)
         cy.get(locators.Login.inputEmail).type(variaveis.usuario.emailInvalido)
         cy.get(locators.Login.inputSenha).type(variaveis.usuario.senha)

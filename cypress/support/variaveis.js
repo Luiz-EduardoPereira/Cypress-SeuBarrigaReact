@@ -17,8 +17,8 @@ export default {
             msgUsuarioCadastradoComSucesso: "Usuário adicionado com sucesso"
     },
         conta: {
-            nomeConta: "teste",
-            nomeContaAlterada: "TESTE",
+            nomeConta: "Itaú",
+            nomeContaAlterada: "Itaú - 6226",
             msgContaInseridaComSucesso: "Conta inserida com sucesso!",
             msgContaAtualizadaComSucesso: "Conta atualizada com sucesso!"
     },

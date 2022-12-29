@@ -9,13 +9,21 @@ import Dashboard from "../support/pages/Dashboard"
 describe('Realizando testes da funcionalidade da Dashboard', () => {
 
     beforeEach(() => {
+        Util.acessarSistema()
         Login.realizarLogin()
         Util.prepararAmbiente()
         Conta.criarConta()
         Conta.alterarConta()
     })
+    it('Deve validar o saldo corretamente após a criação de movimentações de Receita e Despesa', () => {
+        Movimentacao.criarDespesaJaPaga()
+        Movimentacao.criarReceitaJaRecebida()
+        Movimentacao.criarDespesaPendenteDePagamento()
+        Dashboard.validarSaldoReceitaRecebidaDespesaPaga()
 
-    it('Deve revalidar o saldo após a exclusão da movimentação de Receita', () => {
+    })
+
+    it('Deve validar o saldo corretamente após a exclusão da movimentação de Receita', () => {
         Movimentacao.criarDespesaJaPaga()
         Movimentacao.criarReceitaJaRecebida()
         Movimentacao.criarDespesaPendenteDePagamento()
@@ -23,11 +31,4 @@ describe('Realizando testes da funcionalidade da Dashboard', () => {
         Dashboard.validarRecalculoDaExclusaoDeMovimentacaoReceitaRecebida()
     })
 
-    it('Deve validar o saldo corretamente', () => {
-        Movimentacao.criarDespesaJaPaga()
-        Movimentacao.criarReceitaJaRecebida()
-        Movimentacao.criarDespesaPendenteDePagamento()
-        Dashboard.validarSaldoReceitaRecebidaDespesaPaga()
-
-    })
 })

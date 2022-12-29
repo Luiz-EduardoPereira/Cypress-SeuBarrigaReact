@@ -7,7 +7,8 @@ import Movimentacao from "../support/pages/Movimentacao"
 
 describe('Realizando testes da funcionalidade de Movimentação', () => {
 
-    before(()=> {
+    beforeEach(()=> {
+        Util.acessarSistema()
         Login.realizarLogin()
         Util.prepararAmbiente()
         Conta.criarConta()
@@ -33,7 +34,8 @@ describe('Realizando testes da funcionalidade de Movimentação', () => {
 
     })
 
-    it('Deve remover a movimentação criada', () => {
+    it('Deve remover a movimentação de Receita paga', () => {
+        Movimentacao.criarReceitaJaRecebida()
         Movimentacao.removerMovimentacaoDeReceitaPaga()
 
     })

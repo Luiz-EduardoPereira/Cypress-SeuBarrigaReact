@@ -1,4 +1,9 @@
+import variaveis from "./variaveis";
+
 class Util {
+    acessarSistema(){
+        cy.visit(variaveis.geral.urlDaAplicacao)
+    }
     prepararAmbiente(){
         cy.ResetarAmbiente()
     }
